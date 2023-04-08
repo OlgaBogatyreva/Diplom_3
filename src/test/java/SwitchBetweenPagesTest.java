@@ -16,6 +16,13 @@ public class SwitchBetweenPagesTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
+        //   System.setProperty("webdriver.chrome.driver",        // Для запуска в Яндекс браузере
+        //           "C:/cygwin64/home/bogat/chromedriver_110.exe");
+        //   ChromeOptions options = new ChromeOptions();
+        //   options.setBinary("C:/YandexBrowser/Application/browser.exe");
+        //   options.addArguments("--remote-allow-origins=*");
+        //   driver = new ChromeDriver(options);
+
     }
 
     @After

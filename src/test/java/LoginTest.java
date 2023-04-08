@@ -29,6 +29,14 @@ public class LoginTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(options);
+
+        //    System.setProperty("webdriver.chrome.driver", // Для запуска в яндекс браузере
+        //            "C:/cygwin64/home/bogat/chromedriver_110.exe");
+        //    ChromeOptions options = new ChromeOptions();
+        //    options.setBinary("C:/YandexBrowser/Application/browser.exe");
+        //    options.addArguments("--remote-allow-origins=*");
+        //    driver = new ChromeDriver(options);
+
         driver.get("https://stellarburgers.nomoreparties.site/");
         HomePage homePage = new HomePage(driver);
         LoginPage loginPage = new LoginPage(driver);
