@@ -2,14 +2,32 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import pages.HomePage;
 import pages.ProfilePage;
 
+@RunWith(Parameterized.class)
 public class SwitchBetweenPagesTest {
-    private WebDriver driver;
+    private static WebDriver driver;
+    private final By btnToClick;
+    static HomePage homePage = new HomePage(driver);
+
+    public SwitchBetweenPagesTest(By btnToClick) {
+        this.btnToClick = btnToClick;
+    }
+
+    @Parameterized.Parameters
+    public static Object[][] getData() {
+        return new Object[][]{
+                {homePage.loginBtnHeader},
+                {homePage.loginBtnMiddle},
+        };
+    }
 
     @Before
     public void setUp() {
@@ -35,18 +53,8 @@ public class SwitchBetweenPagesTest {
         HomePage homePage = new HomePage(driver);
         ProfilePage profilePage = new ProfilePage(driver);
         driver.get("https://stellarburgers.nomoreparties.site/");
-        homePage.clickLoginBtnHeader();
+        homePage.clickSomeBtn(btnToClick);
         profilePage.clickGoMainByClickLogo();
-        Assert.assertEquals(true, homePage.seeH1CreateBurger());
-    }
-
-    @Test
-    public void switchFromProfileToMainByConstructorBtn() {
-        HomePage homePage = new HomePage(driver);
-        ProfilePage profilePage = new ProfilePage(driver);
-        driver.get("https://stellarburgers.nomoreparties.site/");
-        homePage.clickLoginBtnHeader();
-        profilePage.clickGoMainByClickConstructor();
-        Assert.assertEquals(true, homePage.seeH1CreateBurger());
+        Assert.assertTrue(homePage.seeH1CreateBurger());
     }
 }

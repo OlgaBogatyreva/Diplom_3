@@ -78,7 +78,7 @@ public class RegistrationTest {
 
         if (password.length() > 5) {
             loginPage.login(email, password);
-            Assert.assertTrue(homePage.seeH1CreateBurger() == isRegOk);
+            Assert.assertEquals(homePage.seeH1CreateBurger(), isRegOk);
         } else {
             registrationPage.shortPwdMessage();
         }
